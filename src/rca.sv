@@ -2,19 +2,19 @@
 //
 module rca
     (
-        input logic [2:0] a,
-        input logic [2:0] b,
+        input logic [3:0] a,
+        input logic [3:0] b,
         input logic cin,
-        output logic [2:0] sum,
+        output logic [3:0] sum,
         output logic cout
     );
 
     // Internals
-    logic [2:0] carry;
+    logic [3:0] carry;
 
     genvar i;
     generate;
-        for(i = 0; i < 3; i = i + 1) begin: gen_rca 
+        for(i = 0; i < 4; i = i + 1) begin: gen_rca 
             if(i == 0) begin: gen_0
                 fa_module u(
                     .a(a[i]),
@@ -35,6 +35,6 @@ module rca
         end
     endgenerate
 
-    assign cout = carry[2];
+    assign cout = carry[3];
 
 endmodule: rca
