@@ -14,8 +14,8 @@ module rca
 
     genvar i;
     generate;
-        for(i=0; i< /*Completare qui*/; i=i+1) begin: gen_rca 
-            if (i == 0) begin: gen_0
+        for(i = 0; i < 3; i = i + 1) begin: gen_rca 
+            if(i == 0) begin: gen_0
                 fa_module u(
                     .a(a[i]),
                     .b(b[i]),
@@ -24,8 +24,13 @@ module rca
                     .cout(carry[i])
                 );
             end else begin: gen_gt0
-                /* Completare qui. */
-
+                fa_module u(
+                    .a(a[i]),
+                    .b(b[i]),
+                    .cin(carry[i-1]),
+                    .y(sum[i]),
+                    .cout(carry[i])
+                );
             end
         end
     endgenerate
